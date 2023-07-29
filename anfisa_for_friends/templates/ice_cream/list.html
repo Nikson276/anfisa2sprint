@@ -4,25 +4,17 @@
   Анфиса для друзей. Список мороженого
 {% endblock %}
 {% block content %}
-<h1 class="pb-2 mb-0">Каталог мороженого</h1>
+  <h1 class="pb-2 mb-0">Каталог мороженого</h1>
   <div class="row">
     {% for ice_cream in ice_cream_list %}
-      <div class="col-6 col-md-4 my-1">
-        <div class="card">
-          <img 
-            class="img-fluid card-img-top" 
-            height="400" width="300"
-            src="{% static 'img/image-holder.png' %}"
-          >
-          <div class="card-body">           
-            <h5 class="card-title">{{ ice_cream.name }}</h5>
-            <p class="card-text">{{ ice_cream.description|truncatewords:10 }}</p>
-            <a class="mt-3 regular-link" href="{% url 'ice_cream:ice_cream_detail' ice_cream.id %}">
-              Подробнее -->           
-            </a>
+      {% ifchanged %}
+        <div class="row mt-5" id="{{ ice_cream.category.slug }}">
+          <div class="col-12">
+            <h3>{{ ice_cream.category.title }}</h3>
           </div>
         </div>
-      </div>   
+      {% endifchanged %}
+      {% include "includes/ice_cream_card.html" %}
     {% endfor %}
   </div>
 {% endblock %}

@@ -1,0 +1,18 @@
+{% load static %}
+<div class="col-6 col-md-4 my-1">
+    <div class="card">
+      <img 
+        class="img-fluid card-img-top" 
+        height="400" width="300"
+        src="{% static 'img/image-holder.png' %}"
+      >
+      <div class="card-body">           
+        <h5 class="card-title">{{ ice_cream.title }} </h5>
+        <p class="badge bg-secondary">{{ ice_cream.price }}</p>
+        <p class="card-text">{{ ice_cream.description|truncatechars:40 }}</p>
+        <a class="mt-3 regular-link" href="{% url 'ice_cream:ice_cream_detail' ice_cream.id %}">
+          Подробнее -->
+        </a>
+      </div>
+    </div>
+  </div>
